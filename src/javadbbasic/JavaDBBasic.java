@@ -15,12 +15,12 @@ public class JavaDBBasic {
     public static void connectDB(){
         try{
             Class.forName(db_driver);//ระบุ Driver
-            String url = "jdbc:mysql://"+hostName+"/"+db_name;
-            Connection connect = DriverManager.getConnection(url,user,pass);
+            String url = "jdbc:mysql://"+hostName+"/"+db_name; //=localhost/StudentDB
+            Connection connect = DriverManager.getConnection(url,user,pass); //ใช้งาน interface ที่ชื่อ Connection
             System.out.println("เชื่อมต่อฐานข้อมูลเรียบร้อย");
             
         } catch (Exception e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     
