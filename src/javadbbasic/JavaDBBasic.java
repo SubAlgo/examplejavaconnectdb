@@ -13,6 +13,7 @@ public class JavaDBBasic {
    public static void main(String[] args) {
        // connectDB();
         showdata(); 
+        //insertDB();
     }
     public static Connection connectDB(){
         try{
@@ -26,7 +27,8 @@ public class JavaDBBasic {
         }
         return null;
     }
-    
+   
+    //------------------------------------
     public static void showdata(){
         String sql = "select * from tbstudent";
         try{
@@ -39,9 +41,29 @@ public class JavaDBBasic {
                         "นามสกุล: " + rs.getString(3)+
                         "อายุ: " + rs.getString(4)
                         );
-            }       
+            }  
+            rs.close();
+            c.close();
         }catch (Exception e){
            System.out.println(e.getMessage());
         }
+    }
+    //------------------------------------
+    
+    public static void insertDB(){
+        String sql = "insert into tbstudent value ('333','jenny','united','21')";
+        try{
+            Connection c = connectDB();
+            Statement stm = c.createStatement();
+            stm.executeUpdate(sql);
+            System.out.println("บันทึกข้อมูลเรียบร้อย");
+            
+           c.close();
+           stm.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+            
+        
     }
 }
