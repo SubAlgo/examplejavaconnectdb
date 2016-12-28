@@ -13,7 +13,9 @@ public class JavaDBBasic {
     public static void main(String[] args) {
         // connectDB();
         //insertDB();
-        updateDB();
+        //updateDB();
+        showdata();
+        deleteDB();
         showdata();
     }
 
@@ -83,6 +85,22 @@ public class JavaDBBasic {
             c.close();
             stm.close();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+     //------------------------------------
+    
+    public static void deleteDB(){
+        String sql = "delete from tbstudent where id='2222'";
+        try{
+            Connection c = connectDB();
+            Statement stm = c.createStatement();
+            stm.executeUpdate(sql);
+            System.out.println("ลบข้อมูล ID [222] เรียบร้อยแล้ว");
+            
+            stm.close();
+            c.close();
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
