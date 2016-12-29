@@ -130,6 +130,8 @@ public class JavaDBBasic {
 
                 System.out.println("รหัส: " + sid + "  ชื่อ:  " + name);
             }
+            pre.close();
+            c.close();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
