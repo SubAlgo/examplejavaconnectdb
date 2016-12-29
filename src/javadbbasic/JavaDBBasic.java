@@ -14,9 +14,11 @@ public class JavaDBBasic {
         // connectDB();
         //insertDB();
         //updateDB();
-        showdata();
-        deleteDB();
-        showdata();
+        //showdata();
+        //deleteDB();
+        //showdata();
+        PreparedSelect();
+
     }
 
     public static Connection connectDB() {
@@ -88,20 +90,47 @@ public class JavaDBBasic {
             e.printStackTrace();
         }
     }
-     //------------------------------------
-    
-    public static void deleteDB(){
+    //------------------------------------
+
+    public static void deleteDB() {
         String sql = "delete from tbstudent where id='2222'";
-        try{
+        try {
             Connection c = connectDB();
             Statement stm = c.createStatement();
             stm.executeUpdate(sql);
             System.out.println("ลบข้อมูล ID [222] เรียบร้อยแล้ว");
-            
+
             stm.close();
             c.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void PreparedSelect() {
+        String sql = "Select id,fname from tbstudent where id = ? or id = ?";
+
+        String sid;
+        String name;
+
+        try {
+            Connection c = connectDB();
+            PreparedStatement pre = c.prepareStatement(sql);
+            
+            pre.setString(1, "444");
+            pre.setString(2, "333");
+
+            ResultSet rs = pre.executeQuery();
+
+            while (rs.next()) {
+                sid = rs.getString(1);
+                name = rs.getString(2);
+
+                System.out.println("รหัส: " + sid + "  ชื่อ:  " + name);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
