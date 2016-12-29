@@ -106,6 +106,8 @@ public class JavaDBBasic {
             e.printStackTrace();
         }
     }
+    
+    //------------------------------------
 
     public static void PreparedSelect() {
         String sql = "Select id,fname from tbstudent where id = ? or id = ?";
